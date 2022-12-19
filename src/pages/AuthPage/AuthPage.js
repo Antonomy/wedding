@@ -1,7 +1,12 @@
-import './AuthPage.module.scss';
+// AuthPage.js
 
-export default function AuthPage(props) {
+import SignUpForm from "../../components/SignUpForm/SignUpForm"
+
+export default function AuthPage(){
     return(
-        <h1>AuthPage</h1>
+        <main>
+            <h1>Auth Page</h1>
+            <SignUpForm/>
+        </main>
     )
 }
