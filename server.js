@@ -1,6 +1,6 @@
-// ./server.js
+// /server.js
 require('dotenv').config()
-require('./config/database')
+require('./config/database');
 const express = require('express')
 const path = require('path')
 const favicon = require('serve-favicon')
@@ -9,31 +9,30 @@ const PORT = process.env.PORT || 3001
 
 const app = express()
 
+app.use(express.json())// req.body
+app.use((req, res, next) => {
+    res.locals.data = {}
+    next()
+})
 app.use(logger('dev'))
-// there's no need to mount express.urlencoded middleware
-// why is that?
-app.use(express.json())
-// Configure both serve-favicon & static middleware
-// to serve from the production 'build' folder
-app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')))
+app.use(favicon(path.join(__dirname, 'build', 'favicon.ico' )))
 app.use(express.static(path.join(__dirname, 'build')))
 
-// Check if token and create req.user
 app.use(require('./config/checkToken'))
-
-// Put API routes here, before the "catch all" route
+/*
+app.use('/api', routes) <====== Finish code once you got it
+*/
 app.use('/api/users', require('./routes/api/users'))
 app.use('/api/fruits', require('./routes/api/fruits'))
 
-// The following "catch all" route (note the *) is necessary
-// to return the index.html on all non-AJAX requests
-app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'))
+app.get('/api/test', (req, res) => {
+    res.json({'eureka': 'you have found it'})
 })
 
-// Configure to use port 3001 instead of 3000 during
-// development to avoid collision with React's dev server
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'))
+})
 
-app.listen(PORT, function () {
-  console.log(`Express app running on port ${PORT}`)
+app.listen(PORT, () => {
+    console.log(`I am listening on ${PORT}`)
 })

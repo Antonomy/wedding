@@ -34,10 +34,11 @@ function App() {
             <Route path="/fruits" element={<FruitsPage />} />
             <Route path="/orders/new" element={<NewOrderPage />} />
             <Route path="/orders" element={<OrderHistoryPage/>} />
+            <Route path="/" element={<NewOrderPage />}/>
           </Routes>
         </>
          :
-        <AuthPage/>
+        <AuthPage setUser={setUser}/>
       }
     </main>
   );
