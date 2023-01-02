@@ -1,11 +1,21 @@
+import './NavBar.module.scss';
 import { Link } from 'react-router-dom';
+import { logOut } from '../../utilities/users-service'
+import companyLogo from './images/companyLogoSmall.png'
+
 
 export default function NavBar() {
+  
+  
   return (
-    <nav>
-      <Link to="/orders">Order History</Link>
-      &nbsp; | &nbsp;
-      <Link to="/orders/new">New Order</Link>
-    </nav>
+    <header>
+      <Link to="/dashboard"><img className="logo" src={companyLogo} alt= "Photography Logo"></img></Link>
+      <nav>
+        <Link to="/dashboard">Dashboard</Link>
+        &nbsp; | &nbsp;
+        <Link to="/albums/create">Create Album</Link>
+        <button onClick={logOut()}> Sign Out </button>
+      </nav>
+    </header>
   );
 }

@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose')
 const bcrypt = require('bcrypt')
+const mongoose = require('mongoose')
 
 const SALT_ROUNDS = 6
 
@@ -15,9 +16,12 @@ const userSchema = new Schema({
   password: {
     type: String,
     trim: true,
-    minLength: 3,
+    minLength: 4,
     required: true
-  }
+  },
+  albumsAsPhotographer: [{type: mongoose.Schema.Types.ObjectId, ref: 'albumsAsPhotographer'}],
+  albumsAsClient: [{type: mongoose.Schema.Types.ObjectId, ref: 'albumsAsClient'}]
+  
 }, {
   timestamps: true,
   toJSON: {

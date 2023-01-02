@@ -23,7 +23,7 @@ app.use(require('./config/checkToken'))
 app.use('/api', routes) <====== Finish code once you got it
 */
 app.use('/api/users', require('./routes/api/users'))
-app.use('/api/fruits', require('./routes/api/fruits'))
+app.use('/api/albums', require('./routes/api/albums'))
 
 app.get('/api/test', (req, res) => {
     res.json({'eureka': 'you have found it'})

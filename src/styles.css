@@ -5,7 +5,7 @@
     --tan-2: #E7E2DD;
     --tan-3: #E2D9D1;
     --tan-4: #D3C1AE;
-    --orange: #F67F00;
+    --tan-5: #D9BB79;
     --text-light: #968c84;
     --text-dark: #615954;
   }
@@ -21,7 +21,7 @@
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: var(--tan-4);
+    background-color: --tan-1;
     padding: 2vmin;
     height: 100vh;
   }
@@ -86,7 +86,7 @@
   }
   
   p.error-message {
-    color: var(--orange);
+    color: var(--tan-5);
     text-align: center;
   }
   
@@ -114,14 +114,14 @@
   }
   
   input:focus {
-    border-color: var(--orange);
+    border-color: var(--tan-5);
   }
   
   button, a.button {
     margin: 1vmin;
     padding: 1vmin;
     color: var(--white);
-    background-color: var(--orange);
+    background-color: var(--tan-5);
     font-size: 2vmin;
     font-weight: bold;
     text-decoration: none;

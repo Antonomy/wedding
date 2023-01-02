@@ -1,57 +1,57 @@
-const Fruit = require('../../models/fruit')
+const Album = require('../../models/album')
+
+const mongoose = require('mongoose')
 
 const dataController = {
   // Index,
   index (req, res, next) {
-    Fruit.find({}, (err, foundFruits) => {
+    Album.find({}, (err, foundAlbums) => {
       if (err) {
         res.status(400).send({
           msg: err.message
         })
       } else {
-        res.locals.data.fruits = foundFruits
+        res.locals.data.albums = foundAlbums
         next()
       }
     })
   },
   // Destroy
   destroy (req, res, next) {
-    Fruit.findByIdAndDelete(req.params.id, (err, deletedFruit) => {
+    Album.findByIdAndDelete(req.params.id, (err, deletedAlbum) => {
       if (err) {
         res.status(400).send({
           msg: err.message
         })
       } else {
-        res.locals.data.fruit = deletedFruit
+        res.locals.data.album = deletedAlbum
         next()
       }
     })
   },
   // Update
   update (req, res, next) {
-    req.body.readyToEat = req.body.readyToEat === 'on'
-    Fruit.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedFruit) => {
+    Album.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedAlbum) => {
       if (err) {
         res.status(400).send({
           msg: err.message
         })
       } else {
-        res.locals.data.fruit = updatedFruit
+        res.locals.data.album = updatedAlbum
         next()
       }
     })
   },
   // Create
   create (req, res, next) {
-    req.body.readyToEat = req.body.readyToEat === 'on'
    
-    Fruit.create(req.body, (err, createdFruit) => {
+    Album.create(req.body, (err, createdAlbum) => {
       if (err) {
         res.status(400).send({
           msg: err.message
         })
       } else {
-        res.locals.data.fruit = createdFruit
+        res.locals.data.album = createdAlbum
         next()
       }
     })
@@ -59,14 +59,14 @@ const dataController = {
   // Edit
   // Show
   show (req, res, next) {
-    Fruit.findById(req.params.id, (err, foundFruit) => {
+    Album.findById(req.params.id, (err, foundAlbum) => {
       if (err) {
         res.status(404).send({
           msg: err.message,
-          output: 'Could not find a fruit with that ID'
+          output: 'Could not find a album with that ID'
         })
       } else {
-        res.locals.data.fruit = foundFruit
+        res.locals.data.album = foundAlbum
         next()
       }
     })
@@ -75,10 +75,10 @@ const dataController = {
 
 const apiController = {
     index (req, res, next) {
-      res.json(res.locals.data.fruits)
+      res.json(res.locals.data.albums)
     },
     show (req, res, next) {
-      res.json(res.locals.data.fruit)
+      res.json(res.locals.data.album)
     }
   }
 

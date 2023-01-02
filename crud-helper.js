@@ -9,7 +9,7 @@ require('./config/database');
 // const Order = require('./models/order');
 
 
-const Fruit = require('./models/fruit')
+const Album = require('./models/album')
 
 // Local variables will come in handy for holding retrieved documents
 let user, item, category, order;

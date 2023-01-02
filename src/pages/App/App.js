@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import AuthPage from '../AuthPage/AuthPage';
-import NewOrderPage from '../NewOrderPage/NewOrderPage';
-import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
-import FruitsPage from '../FruitsPage/FruitsPage';
+import CreateAlbumPage from '../CreateAlbumPage/CreateAlbumPage';
+import DashboardPage from '../DashboardPage/DashboardPage';
 import NavBar from '../../components/NavBar/NavBar';
-import { Routes, Route} from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
+import './App.module.scss';
 
 function App() {
   const [state, setState] = useState(null)
-  const [user, setUser ] = useState(null)
+  const [user, setUser] = useState(null)
 
   const fetchState = async () => {
     try {
@@ -23,22 +23,21 @@ function App() {
   useEffect(() => {
     fetchState()
   }, [])
-  
+
   return (
     <main className="App">
       {
         user ?
-        <>
-          <NavBar />
-          <Routes>
-            <Route path="/fruits" element={<FruitsPage />} />
-            <Route path="/orders/new" element={<NewOrderPage />} />
-            <Route path="/orders" element={<OrderHistoryPage/>} />
-            <Route path="/" element={<NewOrderPage />}/>
-          </Routes>
-        </>
-         :
-        <AuthPage setUser={setUser}/>
+          <>
+            <NavBar />
+            <Routes>
+              <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path="/albums/create" element={<CreateAlbumPage />} />
+              <Route path="/" element={<CreateAlbumPage />} />
+            </Routes>
+          </>
+          :
+          <AuthPage setUser={setUser} />
       }
     </main>
   );
