@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import AuthPage from '../AuthPage/AuthPage';
-import CreateAlbumPage from '../CreateAlbumPage/CreateAlbumPage';
 import DashboardPage from '../DashboardPage/DashboardPage';
+import CreateAlbumPage from '../CreateAlbumPage/CreateAlbumPage';
+import CreateGuestbookEntryPage from '../GuestbookPage/CreateGuestbookEntryPage';
 import NavBar from '../../components/NavBar/NavBar';
 import { Routes, Route } from 'react-router-dom'
-import './App.module.scss';
+import './App.scss';
 
 function App() {
   const [state, setState] = useState(null)
@@ -33,6 +34,7 @@ function App() {
             <Routes>
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/albums/create" element={<CreateAlbumPage />} />
+              <Route path="/guestbook/create" element={<CreateGuestbookEntryPage />} />
               <Route path="/" element={<CreateAlbumPage />} />
             </Routes>
           </>

@@ -5,7 +5,7 @@ Update
 Destroy
 */
 import { useState, useEffect } from 'react'
-import './CreateAlbumPage.module.scss';
+import './CreateAlbumPage.scss';
 
 export default function CreateAlbumPage(props) {
     const [albums, setAlbums] = useState([])

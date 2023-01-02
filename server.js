@@ -24,6 +24,7 @@ app.use('/api', routes) <====== Finish code once you got it
 */
 app.use('/api/users', require('./routes/api/users'))
 app.use('/api/albums', require('./routes/api/albums'))
+app.use('/api/guestbook', require('./routes/api/guestbookEntries'))
 
 app.get('/api/test', (req, res) => {
     res.json({'eureka': 'you have found it'})
