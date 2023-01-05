@@ -1,4 +1,4 @@
-import './DashboardPage.scss';
+import './DashboardPage.module.scss';
 
 export default function DashboardPage(props) {
     return (

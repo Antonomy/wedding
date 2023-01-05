@@ -5,7 +5,7 @@ Update
 Destroy
 */
 import { useState, useEffect } from 'react'
-import './CreateAlbumPage.scss';
+import './CreateAlbumPage.module.scss';
 
 export default function CreateAlbumPage(props) {
     const [albums, setAlbums] = useState([])
@@ -111,14 +111,6 @@ export default function CreateAlbumPage(props) {
             {'Client '}<input value={newAlbum.client} onChange={handleChange} name="client"></input><br />
             {'Released '}<input type="checkbox" checked={newAlbum.released} onChange={(evt) => setNewAlbum({ ...newAlbum, released: evt.target.checked })}></input><br />
             <button onClick={() => createAlbum()}>Create A New Album</button>
-            {
-                foundAlbum ? <div>
-                    <h1>Album: {foundAlbum.name}</h1>
-                    <h2>photographer: {foundAlbum.photographer}</h2>
-                    <h2>client: {foundAlbum.photographer}</h2>
-                    <h3>{foundAlbum.released ? 'I am released' : 'I am not released'}</h3>
-                </div> : <>No Album in Found Album State</>
-            }
         </>
     )
 }

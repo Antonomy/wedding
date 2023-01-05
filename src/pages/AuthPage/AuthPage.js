@@ -2,7 +2,7 @@
 
 import SignUpForm from "../../components/SignUpForm/SignUpForm"
 import LoginForm from "../../components/LoginForm/LoginForm"
-import './AuthPage.scss';
+import './AuthPage.module.scss';
 
 export default function AuthPage(props){
     return(

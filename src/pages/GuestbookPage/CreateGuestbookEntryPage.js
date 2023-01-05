@@ -5,9 +5,10 @@ Update
 Destroy
 */
 import { useState, useEffect } from 'react'
-import './CreateGuestbookEntryPage.scss';
+import './CreateGuestbookEntryPage.module.scss';
 
 export default function CreateGuestbookEntryPage(props) {
+    const [showInput, setShowInput] = useState(false)
     const [guestbookEntries, setGuestbookEntries] = useState([])
     const [foundGuestbookEntry, setFoundGuestbookEntry] = useState(null)
     const [newGuestbookEntry, setNewGuestbookEntry] = useState({
@@ -77,6 +78,9 @@ export default function CreateGuestbookEntryPage(props) {
             console.error(error)
         }
     }
+    const handleUpdate = (evt) => {
+        setFoundGuestbookEntry({ ...foundGuestbookEntry, [evt.target.name]: evt.target.value })
+    }
 
     const handleChange = (evt) => {
         setNewGuestbookEntry({ ...newGuestbookEntry, [evt.target.name]: evt.target.value })
@@ -85,7 +89,7 @@ export default function CreateGuestbookEntryPage(props) {
     useEffect(() => {
         getGuestbookEntries()
     }, [foundGuestbookEntry])
-
+    
     return (
         <>
             {
@@ -94,9 +98,27 @@ export default function CreateGuestbookEntryPage(props) {
                         guestbookEntries.map((guestbookEntry) => {
                             return (
                                 <li key={guestbookEntry._id}>
-                                    <span className="guest-name">{guestbookEntry.name} </span> RSVP'd {guestbookEntry.rsvp ? 'YES' : 'NO'}<br />
-                                    Message:{guestbookEntry.message} 
+                                    <span className="guest-name">{guestbookEntry.name} </span>
+                                    RSVP'd {guestbookEntry.rsvp ? 'YES' : 'NO'}<br />
+                                    
+                                    <span onClick={(e) => {
+                                        setShowInput(!showInput)
+                                    }}>Message:{guestbookEntry.message}</span>
+                                    <input
+                                        style={{ display: showInput ? "block" : "none" }}
+                                        type="text"
+                                        name="message"
+                                        onChange={handleUpdate}
+                                        onKeyDown={(e) => {
+                                            if (e.key === "Enter") {
+                                                updateGuestbookEntry(guestbookEntry._id,{message:e.target.value})
+                                                setShowInput(false)
+                                            }
+                                        }}
+                                    />
+                                    
                                     <br /><button onClick={() => deleteGuestbookEntry(guestbookEntry._id)}>Delete This Entry</button>
+                                    <button onClick={() => updateGuestbookEntry(guestbookEntry._id,{rsvp:!guestbookEntry.rsvp})}>Change RSVP</button>
                                 </li>
                             )
                         })
