@@ -1,3 +1,12 @@
+.guestbookcover {
+    width: 100vw;
+    height: 93vh;
+    z-index: -1;
+    position: absolute;
+    opacity: .8;
+    background-color: #816647;
+}
+
 .guest-name {
     font-weight: bold;
     font-size: larger;

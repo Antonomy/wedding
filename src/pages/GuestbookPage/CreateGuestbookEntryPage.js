@@ -5,7 +5,8 @@ Update
 Destroy
 */
 import { useState, useEffect } from 'react'
-import './CreateGuestbookEntryPage.module.scss';
+import styles from './CreateGuestbookEntryPage.module.scss';
+import guestbookCover from './images/guestbookCover.jpeg'
 
 export default function CreateGuestbookEntryPage(props) {
     const [showInput, setShowInput] = useState(false)
@@ -92,6 +93,7 @@ export default function CreateGuestbookEntryPage(props) {
     
     return (
         <>
+            <img className={styles.guestbookcover} src={guestbookCover}></img>
             {
                 guestbookEntries && guestbookEntries.length ? (<ul>
                     {
