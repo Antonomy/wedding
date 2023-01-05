@@ -22,7 +22,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: --tan-1;
-    padding: 2vmin;
+    padding: 0;
     height: 100vh;
   }
   

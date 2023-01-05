@@ -1,4 +1,4 @@
-import './NavBar.module.scss';
+import './NavBar.scss';
 import { Link } from 'react-router-dom';
 import { logOut } from '../../utilities/users-service'
 import companyLogo from './images/companyLogoSmall.png'
@@ -7,12 +7,13 @@ import companyLogo from './images/companyLogoSmall.png'
 export default function NavBar() {
   
   return (
-    <header>
-      <Link to="/"><img className="logo" src={companyLogo} alt= "Photography Logo"></img></Link>
+      
       <nav>
-        <Link to="/eventinfo">EventInfo</Link>
+        
+      <Link to="/"><img className="logo" src={companyLogo} alt= "Logo"></img></Link>
+        <Link to="/eventinfo">Event Info</Link>
         &nbsp; | &nbsp;
-        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/livestream">Livestream</Link>
         &nbsp; | &nbsp;
         <Link to="/guestbook/create">Sign the Guestbook</Link>
         &nbsp; | &nbsp;
@@ -21,6 +22,5 @@ export default function NavBar() {
         <Link to="/registry">Registry</Link>
         <button onClick={logOut}> Sign Out </button>
       </nav>
-    </header>
   );
 }

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import AuthPage from '../AuthPage/AuthPage';
 import HomePage from '../HomePage/HomePage';
 import EventInfoPage from '../EventInfoPage/EventInfoPage';
-import DashboardPage from '../DashboardPage/DashboardPage';
+import LivestreamPage from '../LivestreamPage/LivestreamPage';
 import CreateAlbumPage from '../CreateAlbumPage/CreateAlbumPage';
 import RegistryPage from '../RegistryPage/RegistryPage';
 import CreateGuestbookEntryPage from '../GuestbookPage/CreateGuestbookEntryPage';
@@ -39,7 +39,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/eventinfo" element={<EventInfoPage />} />
-              <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path="/livestream" element={<LivestreamPage />} />
               <Route path="/albums/create" element={<CreateAlbumPage />} />
               <Route path="/guestbook/create" element={<CreateGuestbookEntryPage />} />
               <Route path="/registry" element={<RegistryPage />} />
