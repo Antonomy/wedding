@@ -4,23 +4,25 @@ import { logOut } from '../../utilities/users-service'
 import companyLogo from './images/companyLogoSmall.png'
 
 
-export default function NavBar() {
-  
+export default function NavBar({setUser}) {
+  function handleLogOut() {
+    logOut();
+    setUser(null);
+  }
   return (
       
       <nav>
-        
       <Link to="/"><img className="logo" src={companyLogo} alt= "Logo"></img></Link>
-        <Link to="/eventinfo">Event Info</Link>
+        <Link to="/eventinfo">event info</Link>
         &nbsp; | &nbsp;
-        <Link to="/livestream">Livestream</Link>
+        <Link to="/video">video</Link>
         &nbsp; | &nbsp;
-        <Link to="/guestbook/create">Sign the Guestbook</Link>
+        <Link to="/guestbook">guestbook</Link>
         &nbsp; | &nbsp;
-        <Link to="/albums/create">Create Album</Link>
+        <Link to="/albums">album</Link>
         &nbsp; | &nbsp;
-        <Link to="/registry">Registry</Link>
-        <button onClick={logOut}> Sign Out </button>
+        <Link to="/registry">registry</Link>
+        <button onClick={handleLogOut}> Sign Out </button>
       </nav>
   );
 }

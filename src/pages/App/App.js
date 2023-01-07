@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import AuthPage from '../AuthPage/AuthPage';
 import HomePage from '../HomePage/HomePage';
 import EventInfoPage from '../EventInfoPage/EventInfoPage';
-import LivestreamPage from '../LivestreamPage/LivestreamPage';
+import VideoPage from '../VideoPage/VideoPage';
 import CreateAlbumPage from '../CreateAlbumPage/CreateAlbumPage';
 import RegistryPage from '../RegistryPage/RegistryPage';
 import CreateGuestbookEntryPage from '../GuestbookPage/CreateGuestbookEntryPage';
@@ -12,7 +12,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import { Routes, Route } from 'react-router-dom'
 import './App.module.scss';
 
-function App() {
+export default function App() {
   const [state, setState] = useState(null)
   const [user, setUser] = useState(getUser())
 
@@ -35,15 +35,14 @@ function App() {
       {
         user ?
           <>
-            <NavBar />
+            <NavBar setUser={setUser}/>
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/eventinfo" element={<EventInfoPage />} />
-              <Route path="/livestream" element={<LivestreamPage />} />
-              <Route path="/albums/create" element={<CreateAlbumPage />} />
-              <Route path="/guestbook/create" element={<CreateGuestbookEntryPage />} />
+              <Route path="/video" element={<VideoPage />} />
+              <Route path="/albums" element={<CreateAlbumPage />} />
+              <Route path="/guestbook" element={<CreateGuestbookEntryPage />} />
               <Route path="/registry" element={<RegistryPage />} />
-
             </Routes>
           </>
           :
@@ -52,5 +51,3 @@ function App() {
     </main>
   );
 }
-
-export default App;

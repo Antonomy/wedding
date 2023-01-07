@@ -6,6 +6,14 @@
     opacity: .8;
     background-color: #816647;
 }
+.guestbook{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.guestbook>li{
+    text-align: center;
+}
 
 .guest-name {
     font-weight: bold;

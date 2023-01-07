@@ -94,6 +94,7 @@ export default function CreateGuestbookEntryPage(props) {
     return (
         <>
             <img className={styles.guestbookcover} src={guestbookCover}></img>
+            <div className={styles.guestbook}>
             {
                 guestbookEntries && guestbookEntries.length ? (<ul>
                     {
@@ -131,6 +132,7 @@ export default function CreateGuestbookEntryPage(props) {
             {'Message '}<input value={newGuestbookEntry.message} onChange={handleChange} name="message"></input><br />
             {'RSVP '}<input type="checkbox" checked={newGuestbookEntry.rsvp} onChange={(evt) => setNewGuestbookEntry({ ...newGuestbookEntry, rsvp: evt.target.checked })}></input><br />
             <button onClick={() => createGuestbookEntry()}>Leave a Message</button>
+            </div>
         </>
     )
 }
