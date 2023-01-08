@@ -9,7 +9,7 @@ import styles from './GuestbookPage.module.scss'
 import guestbookCover from './images/guestbookCover.jpeg'
 import editIcon from './images/editpencilicon.png'
 
-export default function GuestbookPage ({ user }) {
+export default function GuestbookPage({ user }) {
   const [showInput, setShowInput] = useState(false)
   const [inputId, setInputId] = useState('')
   const [guestbookEntries, setGuestbookEntries] = useState([])
@@ -98,49 +98,49 @@ export default function GuestbookPage ({ user }) {
       <img className={styles.guestbookcover} src={guestbookCover} />
       <div className={styles.guestbook}>
         {
-                    guestbookEntries && guestbookEntries.length
-                      ? (
-                        <ul>
-                          {
-                                guestbookEntries.map((guestbookEntry) => {
-                                  return (
-                                    <li key={guestbookEntry._id} className={styles.guestbookentry}>
-                                      <span className={styles.guestname}>{guestbookEntry.name} </span>
-                                      RSVP'd {guestbookEntry.rsvp ? 'YES' : 'NO'}<br />
-                                      Message:{guestbookEntry.message}
-                                      <span onClick={(e) => { setInputId(guestbookEntry._id) }}>
-                                        <img src={editIcon} />
-                                      </span>
-                                      <input
-                                        style={{ display: inputId === guestbookEntry._id ? 'block' : 'none' }}
-                                        type='text'
-                                        name='message'
-                                        onChange={handleUpdate}
-                                        onKeyDown={(e) => {
-                                          if (e.key === 'Enter') {
-                                            updateGuestbookEntry(guestbookEntry._id, { message: e.target.value })
-                                            setInputId('')
-                                          }
-                                        }}
-                                      />
-
-                                      <br />
-                                      {
-                                                user._id === guestbookEntry.posterId
-                                                  ? <>
-                                                    <button onClick={() => deleteGuestbookEntry(guestbookEntry._id)}>Delete This Entry</button>
-                                                    <button onClick={() => updateGuestbookEntry(guestbookEntry._id, { rsvp: !guestbookEntry.rsvp })}>Change RSVP</button>
-                                                  </>
-                                                  : ''
-                                            }
-                                    </li>
-                                  )
-                                })
+          guestbookEntries && guestbookEntries.length
+            ? (
+              <ul>
+                {
+                  guestbookEntries.map((guestbookEntry) => {
+                    return (
+                      <li key={guestbookEntry._id} className={styles.guestbookentry}>
+                        <span className={styles.guestname}>{guestbookEntry.name} </span>
+                        RSVP'd {guestbookEntry.rsvp ? 'YES' : 'NO'}<br />
+                        Message:{guestbookEntry.message}
+                        <span onClick={(e) => { setInputId(guestbookEntry._id) }}>
+                          <img className={styles.editIcon} src={editIcon} />
+                        </span>
+                        <input
+                          style={{ display: inputId === guestbookEntry._id ? 'block' : 'none' }}
+                          type='text'
+                          name='message'
+                          onChange={handleUpdate}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              updateGuestbookEntry(guestbookEntry._id, { message: e.target.value })
+                              setInputId('')
                             }
-                        </ul>
-                        )
-                      : <h1>No GuestbookEntries Yet Add One Below</h1>
+                          }}
+                        />
+
+                        <br />
+                        {
+                          user._id === guestbookEntry.posterId
+                            ? <>
+                              <button onClick={() => deleteGuestbookEntry(guestbookEntry._id)}>Delete This Entry</button>
+                              <button onClick={() => updateGuestbookEntry(guestbookEntry._id, { rsvp: !guestbookEntry.rsvp })}>Change RSVP</button>
+                            </>
+                            : ''
+                        }
+                      </li>
+                    )
+                  })
                 }
+              </ul>
+            )
+            : <h1>Be the first to sign the Guestbook!</h1>
+        }
         {'Name '}<input value={newGuestbookEntry.name} onChange={handleChange} name='name' /><br />
         {'Message '}<input value={newGuestbookEntry.message} onChange={handleChange} name='message' /><br />
         {'RSVP '}<input type='checkbox' checked={newGuestbookEntry.rsvp} onChange={(evt) => setNewGuestbookEntry({ ...newGuestbookEntry, rsvp: evt.target.checked })} /><br />

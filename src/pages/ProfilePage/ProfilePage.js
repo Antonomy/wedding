@@ -94,8 +94,8 @@ export default function CreateProfilePage ({ user }) {
 
   return (
     <>
-      Name: {user.name}<img src={editIcon} /><br />
-      Email: {user.email}<img src={editIcon} />
+      Name: {user.name}<img className={styles.editIcon} src={editIcon} /><br />
+      Email: {user.email}<img className={styles.editIcon} src={editIcon} />
     </>
   )
 }
