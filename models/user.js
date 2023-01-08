@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const SALT_ROUNDS = 6
 
 const userSchema = new Schema({
-  name: {type: String, required: true},
+  name: { type: String, required: true },
   email: {
     type: String,
     unique: true,
@@ -19,9 +19,9 @@ const userSchema = new Schema({
     minLength: 4,
     required: true
   },
-  albumsAsPhotographer: [{type: mongoose.Schema.Types.ObjectId, ref: 'albumsAsPhotographer'}],
-  albumsAsClient: [{type: mongoose.Schema.Types.ObjectId, ref: 'albumsAsClient'}]
-  
+  albumsAsPhotographer: [{ type: mongoose.Schema.Types.ObjectId, ref: 'albumsAsPhotographer' }],
+  albumsAsClient: [{ type: mongoose.Schema.Types.ObjectId, ref: 'albumsAsClient' }]
+
 }, {
   timestamps: true,
   toJSON: {

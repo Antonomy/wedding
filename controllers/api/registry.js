@@ -44,7 +44,6 @@ const dataController = {
   },
   // Create
   create (req, res, next) {
-   
     Registry.create(req.body, (err, createdRegistry) => {
       if (err) {
         res.status(400).send({
@@ -74,12 +73,12 @@ const dataController = {
 }
 
 const apiController = {
-    index (req, res, next) {
-      res.json(res.locals.data.registries)
-    },
-    show (req, res, next) {
-      res.json(res.locals.data.registry)
-    }
+  index (req, res, next) {
+    res.json(res.locals.data.registries)
+  },
+  show (req, res, next) {
+    res.json(res.locals.data.registry)
   }
+}
 
 module.exports = { dataController, apiController }

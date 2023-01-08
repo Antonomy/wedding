@@ -44,7 +44,6 @@ const dataController = {
   },
   // Create
   create (req, res, next) {
-   
     Album.create(req.body, (err, createdAlbum) => {
       if (err) {
         res.status(400).send({
@@ -74,12 +73,12 @@ const dataController = {
 }
 
 const apiController = {
-    index (req, res, next) {
-      res.json(res.locals.data.albums)
-    },
-    show (req, res, next) {
-      res.json(res.locals.data.album)
-    }
+  index (req, res, next) {
+    res.json(res.locals.data.albums)
+  },
+  show (req, res, next) {
+    res.json(res.locals.data.album)
   }
+}
 
 module.exports = { dataController, apiController }

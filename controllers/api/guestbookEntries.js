@@ -44,7 +44,6 @@ const dataController = {
   },
   // Create
   create (req, res, next) {
-   
     GuestbookEntry.create(req.body, (err, createdGuestbookEntry) => {
       if (err) {
         res.status(400).send({
@@ -74,12 +73,12 @@ const dataController = {
 }
 
 const apiController = {
-    index (req, res, next) {
-      res.json(res.locals.data.guestbookEntries)
-    },
-    show (req, res, next) {
-      res.json(res.locals.data.guestbookEntry)
-    }
+  index (req, res, next) {
+    res.json(res.locals.data.guestbookEntries)
+  },
+  show (req, res, next) {
+    res.json(res.locals.data.guestbookEntry)
   }
+}
 
 module.exports = { dataController, apiController }
