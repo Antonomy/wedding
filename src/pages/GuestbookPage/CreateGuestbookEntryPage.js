@@ -7,9 +7,11 @@ Destroy
 import { useState, useEffect } from 'react'
 import styles from './CreateGuestbookEntryPage.module.scss';
 import guestbookCover from './images/guestbookCover.jpeg'
+import editIcon from '../../images/editpencilicon.png'
 
-export default function CreateGuestbookEntryPage(props) {
+export default function CreateGuestbookEntryPage({ user }) {
     const [showInput, setShowInput] = useState(false)
+    const [inputId, setInputId] = useState('')
     const [guestbookEntries, setGuestbookEntries] = useState([])
     const [foundGuestbookEntry, setFoundGuestbookEntry] = useState(null)
     const [newGuestbookEntry, setNewGuestbookEntry] = useState({
@@ -84,54 +86,63 @@ export default function CreateGuestbookEntryPage(props) {
     }
 
     const handleChange = (evt) => {
-        setNewGuestbookEntry({ ...newGuestbookEntry, [evt.target.name]: evt.target.value })
+        setNewGuestbookEntry({ ...newGuestbookEntry, [evt.target.name]: evt.target.value, posterId: user._id })
     }
 
     useEffect(() => {
         getGuestbookEntries()
     }, [foundGuestbookEntry])
-    
+
     return (
         <>
             <img className={styles.guestbookcover} src={guestbookCover}></img>
             <div className={styles.guestbook}>
-            {
-                guestbookEntries && guestbookEntries.length ? (<ul>
-                    {
-                        guestbookEntries.map((guestbookEntry) => {
-                            return (
-                                <li key={guestbookEntry._id}>
-                                    <span className="guest-name">{guestbookEntry.name} </span>
-                                    RSVP'd {guestbookEntry.rsvp ? 'YES' : 'NO'}<br />
-                                    
-                                    <span onClick={(e) => {
-                                        setShowInput(!showInput)
-                                    }}>Message:{guestbookEntry.message}</span>
-                                    <input
-                                        style={{ display: showInput ? "block" : "none" }}
-                                        type="text"
-                                        name="message"
-                                        onChange={handleUpdate}
-                                        onKeyDown={(e) => {
-                                            if (e.key === "Enter") {
-                                                updateGuestbookEntry(guestbookEntry._id,{message:e.target.value})
-                                                setShowInput(false)
+                {
+                    guestbookEntries && guestbookEntries.length ? (
+                        <ul>
+                            {
+                                guestbookEntries.map((guestbookEntry) => {
+                                    return (
+                                        <li key={guestbookEntry._id} className={styles.guestbookentry}>
+                                            <span className={styles.guestname}>{guestbookEntry.name} </span>
+                                            RSVP'd {guestbookEntry.rsvp ? 'YES' : 'NO'}<br />
+                                            Message:{guestbookEntry.message}
+                                            <span onClick={(e) => { setInputId(guestbookEntry._id) }}>
+                                                <img src={editIcon}></img>
+                                            </span>
+                                            <input
+                                                style={{ display: inputId === guestbookEntry._id ? "block" : "none" }}
+                                                type="text"
+                                                name="message"
+                                                onChange={handleUpdate}
+                                                onKeyDown={(e) => {
+                                                    if (e.key === "Enter") {
+                                                        updateGuestbookEntry(guestbookEntry._id, { message: e.target.value })
+                                                        setInputId('')
+                                                    }
+                                                }}
+                                            />
+
+                                            <br />
+                                            {
+                                                user._id === guestbookEntry.posterId ?
+                                                    <>
+                                                        <button onClick={() => deleteGuestbookEntry(guestbookEntry._id)}>Delete This Entry</button>
+                                                        <button onClick={() => updateGuestbookEntry(guestbookEntry._id, { rsvp: !guestbookEntry.rsvp })}>Change RSVP</button>
+                                                    </>
+                                                    : ''
                                             }
-                                        }}
-                                    />
-                                    
-                                    <br /><button onClick={() => deleteGuestbookEntry(guestbookEntry._id)}>Delete This Entry</button>
-                                    <button onClick={() => updateGuestbookEntry(guestbookEntry._id,{rsvp:!guestbookEntry.rsvp})}>Change RSVP</button>
-                                </li>
-                            )
-                        })
-                    }
-                </ul>) : <h1>No GuestbookEntries Yet Add One Below</h1>
-            }
-            {'Name '}<input value={newGuestbookEntry.name} onChange={handleChange} name="name"></input><br />
-            {'Message '}<input value={newGuestbookEntry.message} onChange={handleChange} name="message"></input><br />
-            {'RSVP '}<input type="checkbox" checked={newGuestbookEntry.rsvp} onChange={(evt) => setNewGuestbookEntry({ ...newGuestbookEntry, rsvp: evt.target.checked })}></input><br />
-            <button onClick={() => createGuestbookEntry()}>Leave a Message</button>
+                                        </li>
+                                    )
+                                })
+                            }
+                        </ul>
+                    ) : <h1>No GuestbookEntries Yet Add One Below</h1>
+                }
+                {'Name '}<input value={newGuestbookEntry.name} onChange={handleChange} name="name"></input><br />
+                {'Message '}<input value={newGuestbookEntry.message} onChange={handleChange} name="message"></input><br />
+                {'RSVP '}<input type="checkbox" checked={newGuestbookEntry.rsvp} onChange={(evt) => setNewGuestbookEntry({ ...newGuestbookEntry, rsvp: evt.target.checked })}></input><br />
+                <button onClick={() => createGuestbookEntry()}>Leave a Message</button>
             </div>
         </>
     )

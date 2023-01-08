@@ -22,6 +22,8 @@ export default function NavBar({setUser}) {
         <Link to="/albums">album</Link>
         &nbsp; | &nbsp;
         <Link to="/registry">registry</Link>
+        &nbsp; | &nbsp;
+        <Link to="/profile">profile</Link>
         <button onClick={handleLogOut}> Sign Out </button>
       </nav>
   );

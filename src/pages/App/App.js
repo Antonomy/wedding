@@ -5,9 +5,9 @@ import EventInfoPage from '../EventInfoPage/EventInfoPage';
 import VideoPage from '../VideoPage/VideoPage';
 import CreateAlbumPage from '../CreateAlbumPage/CreateAlbumPage';
 import RegistryPage from '../RegistryPage/RegistryPage';
+import ProfilePage from '../ProfilePage/ProfilePage';
 import CreateGuestbookEntryPage from '../GuestbookPage/CreateGuestbookEntryPage';
 import { getUser } from '../../utilities/users-service';
-
 import NavBar from '../../components/NavBar/NavBar';
 import { Routes, Route } from 'react-router-dom'
 import './App.module.scss';
@@ -41,8 +41,9 @@ export default function App() {
               <Route path="/eventinfo" element={<EventInfoPage />} />
               <Route path="/video" element={<VideoPage />} />
               <Route path="/albums" element={<CreateAlbumPage />} />
-              <Route path="/guestbook" element={<CreateGuestbookEntryPage />} />
+              <Route path="/guestbook" element={<CreateGuestbookEntryPage user={user} />} />
               <Route path="/registry" element={<RegistryPage />} />
+              <Route path="/profile" element={<ProfilePage user={user}/>} />
             </Routes>
           </>
           :
