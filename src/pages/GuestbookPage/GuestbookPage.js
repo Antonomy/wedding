@@ -108,9 +108,6 @@ export default function GuestbookPage({ user }) {
                         <span className={styles.guestname}>{guestbookEntry.name} </span>
                         RSVP'd {guestbookEntry.rsvp ? 'YES' : 'NO'}<br />
                         Message:{guestbookEntry.message}
-                        <span onClick={(e) => { setInputId(guestbookEntry._id) }}>
-                          <img className={styles.editIcon} src={editIcon} />
-                        </span>
                         <input
                           style={{ display: inputId === guestbookEntry._id ? 'block' : 'none' }}
                           type='text'
@@ -128,6 +125,9 @@ export default function GuestbookPage({ user }) {
                         {
                           user._id === guestbookEntry.posterId
                             ? <>
+                              <span onClick={(e) => { setInputId(guestbookEntry._id) }}>
+                                <img className={styles.editIcon} src={editIcon} />
+                              </span>
                               <button onClick={() => deleteGuestbookEntry(guestbookEntry._id)}>Delete This Entry</button>
                               <button onClick={() => updateGuestbookEntry(guestbookEntry._id, { rsvp: !guestbookEntry.rsvp })}>Change RSVP</button>
                             </>

@@ -40,9 +40,7 @@ export default function App () {
               <Route path='/' element={<HomePage />} />
               <Route path='/eventinfo' element={<EventInfoPage />} />
               <Route path='/video' element={<VideoPage />} />
-              <Route path='/albums' element={<CreateAlbumPage />} />
               <Route path='/guestbook' element={<GuestbookPage user={user} />} />
-              <Route path='/registry' element={<RegistryPage />} />
               <Route path='/profile' element={<ProfilePage user={user} />} />
             </Routes>
             </>
