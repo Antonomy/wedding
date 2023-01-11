@@ -18,9 +18,7 @@ const userSchema = new Schema({
     trim: true,
     minLength: 4,
     required: true
-  },
-  albumsAsPhotographer: [{ type: mongoose.Schema.Types.ObjectId, ref: 'albumsAsPhotographer' }],
-  albumsAsClient: [{ type: mongoose.Schema.Types.ObjectId, ref: 'albumsAsClient' }]
+  }
 
 }, {
   timestamps: true,
