@@ -146,7 +146,7 @@ export default function GuestbookPage({ user }) {
         {'Message '}<input value={newGuestbookEntry.message} onChange={handleChange} name='message' /><br />
         {'RSVP '}<input type='checkbox' checked={newGuestbookEntry.rsvp} onChange={(evt) => setNewGuestbookEntry({ ...newGuestbookEntry, rsvp: evt.target.checked })} /><br />
         <button onClick={() => createGuestbookEntry()}>Leave a Message</button>
-        </div>>
+        </div>
       </div>
     </>
   )
