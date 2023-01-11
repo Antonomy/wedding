@@ -124,13 +124,13 @@ export default function GuestbookPage({ user }) {
                         <br />
                         {
                           user._id === guestbookEntry.posterId
-                            ? <>
-                              <span onClick={(e) => { setInputId(guestbookEntry._id) }}>
+                            ? <div>
+                              <div onClick={(e) => { setInputId(guestbookEntry._id) }}>
                                 <img className={styles.editIcon} src={editIcon} />
-                              </span>
-                              <button onClick={() => deleteGuestbookEntry(guestbookEntry._id)}>Delete This Entry</button>
-                              <button onClick={() => updateGuestbookEntry(guestbookEntry._id, { rsvp: !guestbookEntry.rsvp })}>Change RSVP</button>
-                            </>
+                              </div>
+                              <button onClick={() => deleteGuestbookEntry(guestbookEntry._id)}>Delete Entry</button>
+                              <button onClick={() => updateGuestbookEntry(guestbookEntry._id, { rsvp: !guestbookEntry.rsvp })}>Update RSVP</button>
+                            </div>
                             : ''
                         }
                       </li>
@@ -141,10 +141,12 @@ export default function GuestbookPage({ user }) {
             )
             : <h1>Be the first to sign the Guestbook!</h1>
         }
+        <div className={styles.guestbookInputForm}>
         {'Name '}<input value={newGuestbookEntry.name} onChange={handleChange} name='name' /><br />
         {'Message '}<input value={newGuestbookEntry.message} onChange={handleChange} name='message' /><br />
         {'RSVP '}<input type='checkbox' checked={newGuestbookEntry.rsvp} onChange={(evt) => setNewGuestbookEntry({ ...newGuestbookEntry, rsvp: evt.target.checked })} /><br />
         <button onClick={() => createGuestbookEntry()}>Leave a Message</button>
+        </div>>
       </div>
     </>
   )

@@ -9,7 +9,9 @@
 .guestbook{
     display: flex;
     flex-direction: column;
+    align-content: center;
     align-items: center;
+    
 }
 
 .guestname {
@@ -22,7 +24,17 @@
     text-align: center;
     display: flex;
     flex-direction: column;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 0.5rem;
 }
 .editIcon{
     height: 1rem;
+}
+
+.guestbookInputForm{
+        background: rgba(255, 255, 255, 0.5);
+        text-align: center;
+        font-weight: bold;
+        width: 50vw;
+        padding: 2rem;
 }
