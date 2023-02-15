@@ -9,7 +9,7 @@ import styles from './GuestbookPage.module.scss'
 import guestbookCover from './images/guestbookCover.jpeg'
 import editIcon from './images/editpencilicon.png'
 
-export default function GuestbookPage({ user }) {
+export default function GuestbookPage ({ user }) {
   const [showInput, setShowInput] = useState(false)
   const [inputId, setInputId] = useState('')
   const [guestbookEntries, setGuestbookEntries] = useState([])
@@ -138,14 +138,14 @@ export default function GuestbookPage({ user }) {
                   })
                 }
               </ul>
-            )
+              )
             : <h1>Be the first to sign the Guestbook!</h1>
         }
         <div className={styles.guestbookInputForm}>
-        {'Name '}<input value={newGuestbookEntry.name} onChange={handleChange} name='name' /><br />
-        {'Message '}<input value={newGuestbookEntry.message} onChange={handleChange} name='message' /><br />
-        {'RSVP '}<input type='checkbox' checked={newGuestbookEntry.rsvp} onChange={(evt) => setNewGuestbookEntry({ ...newGuestbookEntry, rsvp: evt.target.checked })} /><br />
-        <button onClick={() => createGuestbookEntry()}>Leave a Message</button>
+          {'Name '}<input value={newGuestbookEntry.name} onChange={handleChange} name='name' /><br />
+          {'Message '}<input value={newGuestbookEntry.message} onChange={handleChange} name='message' /><br />
+          {'RSVP '}<input type='checkbox' checked={newGuestbookEntry.rsvp} onChange={(evt) => setNewGuestbookEntry({ ...newGuestbookEntry, rsvp: evt.target.checked })} /><br />
+          <button onClick={() => createGuestbookEntry()}>Leave a Message</button>
         </div>
       </div>
     </>
